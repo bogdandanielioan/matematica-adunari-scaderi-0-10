@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Matematică Veselă - Adunări și Scăderi 0-10</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ff6b9d;
+            --purple: #c44cff;
+            --blue: #4cc9ff;
+            --green: #4cff88;
+            --yellow: #ffe44c;
+            --orange: #ff9f4c;
+            --red: #ff4c6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Baloo 2', cursive;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+            overflow-x: hidden;
+        }
+
+        /* Animated Clouds */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.9;
+            animation: floatCloud linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud-1 {
+            width: 150px;
+            height: 50px;
+            top: 10%;
+            animation-duration: 30s;
+        }
+        .cloud-1::before { width: 70px; height: 70px; top: -35px; left: 20px; }
+        .cloud-1::after { width: 50px; height: 50px; top: -25px; left: 70px; }
+
+        .cloud-2 {
+            width: 120px;
+            height: 40px;
+            top: 20%;
+            animation-duration: 40s;
+            animation-delay: -15s;
+        }
+        .cloud-2::before { width: 55px; height: 55px; top: -30px; left: 15px; }
+        .cloud-2::after { width: 40px; height: 40px; top: -20px; left: 55px; }
+
+        .cloud-3 {
+            width: 100px;
+            height: 35px;
+            top: 5%;
+            animation-duration: 35s;
+            animation-delay: -5s;
+        }
+        .cloud-3::before { width: 45px; height: 45px; top: -25px; left: 10px; }
+        .cloud-3::after { width: 35px; height: 35px; top: -18px; left: 45px; }
+
+        @keyframes floatCloud {
+            from { left: -200px; }
+            to { left: 110%; }
+        }
+
+        /* Rainbow */
+        .rainbow {
+            position: fixed;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 180deg,
+                #ff0000 0deg,
+                #ff8000 30deg,
+                #ffff00 60deg,
+                #00ff00 90deg,
+                #00ffff 120deg,
+                #0000ff 150deg,
+                #8000ff 180deg,
+                transparent 180deg
+            );
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* Sun */
+        .sun {
+            position: fixed;
+            top: 30px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff700 0%, #ffcc00 50%, #ff9500 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #ffcc00, 0 0 100px #ff950080;
+            z-index: 1;
+            animation: sunPulse 3s ease-in-out infinite;
+        }
+
+        .sun::before {
+            content: '😊';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+        }
+
+        @keyframes sunPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Grass */
+        .grass {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+            z-index: 0;
+        }
+
+        .grass::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0,20 Q10,0 20,20 Q30,0 40,20 Q50,0 60,20 Q70,0 80,20 Q90,0 100,20 L100,20 L0,20 Z' fill='%234ade80'/%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 40px;
+        }
+
+        /* Flowers */
+        .flowers {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 2rem;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 120px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 30px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            border: 5px solid var(--yellow);
+            position: relative;
+        }
+
+        .header-emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, var(--pink), var(--purple), var(--blue), var(--green));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 5s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .stat-bubble {
+            background: white;
+            border-radius: 25px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 4px solid;
+            transition: transform 0.3s;
+        }
+
+        .stat-bubble:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .stat-bubble:nth-child(1) { border-color: var(--yellow); }
+        .stat-bubble:nth-child(2) { border-color: var(--green); }
+        .stat-bubble:nth-child(3) { border-color: var(--blue); }
+        .stat-bubble:nth-child(4) { border-color: var(--pink); }
+
+        .stat-icon {
+            font-size: 2.2rem;
+        }
+
+        .stat-info {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        /* Mode Selection */
+        .mode-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #666;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 4px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .mode-btn.active {
+            border-color: var(--purple);
+            background: linear-gradient(135deg, #f8f0ff, #fff);
+            color: var(--purple);
+        }
+
+        .mode-btn span {
+            font-size: 1.5rem;
+        }
+
+        /* Exercise Card */
+        .exercise-card {
+            background: white;
+            border-radius: 40px;
+            padding: 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 5px solid var(--blue);
+            position: relative;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exercise-badge {
+            background: rgba(255,255,255,0.3);
+            padding: 10px 25px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exercise-type {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exercise-type.addition {
+            color: var(--green);
+        }
+
+        .exercise-type.subtraction {
+            color: var(--orange);
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* Visual Counter Section */
+        .visual-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 25px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border: 4px dashed #93c5fd;
+        }
+
+        .visual-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            min-width: 100px;
+        }
+
+        .visual-item {
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: popIn 0.3s ease backwards;
+        }
+
+        .visual-item:hover {
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .visual-operator {
+            font-size: 4rem;
+            font-weight: 800;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+
+        .visual-operator.plus {
+            color: var(--green);
+        }
+
+        .visual-operator.minus {
+            color: var(--orange);
+        }
+
+        .visual-equals {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--purple);
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+
+        .visual-result {
+            font-size: 4rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(255, 159, 76, 0.4);
+        }
+
+        /* Number Expression */
+        .expression-section {
+            background: linear-gradient(135deg, #fefce8, #fef3c7);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 4px solid var(--yellow);
+        }
+
+        .expression {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .expression-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .expression-operator {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+
+        .expression-operator.plus { color: var(--green); }
+        .expression-operator.minus { color: var(--orange); }
+        .expression-equals { color: var(--purple); font-size: 3.5rem; font-weight: 800; }
+
+        /* Answer Section */
+        .answer-section {
+            text-align: center;
+        }
+
+        .answer-prompt {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .answer-prompt span {
+            font-size: 1.8rem;
+        }
+
+        /* Number Buttons */
+        .number-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .number-btn {
+            width: 70px;
+            height: 70px;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.2), 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            top: 0;
+        }
+
+        .number-btn:nth-child(1) { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
+        .number-btn:nth-child(2) { background: linear-gradient(135deg, #ffa502, #ff8502); }
+        .number-btn:nth-child(3) { background: linear-gradient(135deg, #ffd32a, #f9ca24); }
+        .number-btn:nth-child(4) { background: linear-gradient(135deg, #2ed573, #17c761); }
+        .number-btn:nth-child(5) { background: linear-gradient(135deg, #1e90ff, #0077e6); }
+        .number-btn:nth-child(6) { background: linear-gradient(135deg, #a55eea, #8e44ad); }
+        .number-btn:nth-child(7) { background: linear-gradient(135deg, #ff6b9d, #ff4881); }
+        .number-btn:nth-child(8) { background: linear-gradient(135deg, #26de81, #20bf6b); }
+        .number-btn:nth-child(9) { background: linear-gradient(135deg, #4ecdc4, #45b7af); }
+        .number-btn:nth-child(10) { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+        .number-btn:nth-child(11) { background: linear-gradient(135deg, #fd79a8, #e84393); }
+
+        .number-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 0 rgba(0,0,0,0.2), 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .number-btn:active {
+            top: 4px;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .number-btn.selected {
+            transform: scale(1.15);
+            animation: selectedPulse 0.5s ease infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+        }
+
+        /* Feedback */
+        .feedback-area {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback-area.show {
+            display: block;
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .feedback-box {
+            padding: 25px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .feedback-box.correct {
+            background: linear-gradient(135deg, #d4edda, #b7e4c7);
+            border: 4px solid var(--green);
+        }
+
+        .feedback-box.incorrect {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 4px solid var(--red);
+        }
+
+        .feedback-emoji {
+            font-size: 4rem;
+            animation: wiggle 0.5s ease;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        .feedback-text {
+            text-align: left;
+        }
+
+        .feedback-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .feedback-box.correct .feedback-title { color: #166534; }
+        .feedback-box.incorrect .feedback-title { color: #991b1b; }
+
+        .feedback-message {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.15), 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            top: 0;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            top: 4px;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.15), 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--green), #20bf6b);
+            color: white;
+        }
+
+        .nav-btn.new {
+            background: linear-gradient(135deg, var(--purple), #8e44ad);
+            color: white;
+        }
+
+        .nav-btn.reset {
+            background: linear-gradient(135deg, var(--orange), #e67e22);
+            color: white;
+        }
+
+        .nav-btn span {
+            font-size: 1.5rem;
+        }
+
+        /* Progress Caterpillar */
+        .caterpillar-section {
+            margin-bottom: 25px;
+        }
+
+        .caterpillar-title {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .caterpillar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .caterpillar-segment {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .caterpillar-segment.current {
+            background: var(--blue);
+            transform: scale(1.2);
+            animation: currentPulse 1s ease infinite;
+        }
+
+        @keyframes currentPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(76, 201, 255, 0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(76, 201, 255, 0); }
+        }
+
+        .caterpillar-segment.correct {
+            background: var(--green);
+        }
+
+        .caterpillar-segment.incorrect {
+            background: var(--red);
+        }
+
+        .caterpillar-head {
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+            background: var(--yellow);
+            animation: headWiggle 2s ease infinite;
+        }
+
+        @keyframes headWiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Celebration Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            background: white;
+            border-radius: 40px;
+            padding: 50px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 6px solid var(--yellow);
+            animation: modalBounce 0.5s ease;
+        }
+
+        @keyframes modalBounce {
+            0% { transform: scale(0) rotate(-10deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .modal-trophy {
+            font-size: 6rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: trophyBounce 1s ease infinite;
+        }
+
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .modal-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+
+        .modal-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .modal-message {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .modal-stars {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            letter-spacing: 10px;
+        }
+
+        .modal-btn {
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--green), #20bf6b);
+            color: white;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.15), 0 15px 35px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2000;
+            border-radius: 3px;
+        }
+
+        /* Animated Character */
+        .helper-character {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 100;
+            font-size: 5rem;
+            cursor: pointer;
+            animation: helperFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+            transition: transform 0.3s;
+        }
+
+        .helper-character:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes helperFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .helper-bubble {
+            position: fixed;
+            bottom: 200px;
+            right: 30px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            max-width: 200px;
+            display: none;
+            z-index: 100;
+            border: 3px solid var(--yellow);
+        }
+
+        .helper-bubble.show {
+            display: block;
+            animation: bubblePop 0.3s ease;
+        }
+
+        @keyframes bubblePop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .helper-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 40px;
+            border: 10px solid transparent;
+            border-top-color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .visual-item {
+                font-size: 2.2rem;
+            }
+
+            .visual-operator, .visual-equals {
+                font-size: 2.5rem;
+            }
+
+            .expression-number {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+
+            .number-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+
+            .helper-character {
+                display: none;
+            }
+
+            .sun {
+                width: 60px;
+                height: 60px;
+                right: 20px;
+            }
+
+            .sun::before {
+                font-size: 2rem;
+            }
+        }
+
+        @media print {
+            .clouds, .sun, .rainbow, .grass, .flowers, .helper-character, .helper-bubble, .stats-bar, .caterpillar-section, .navigation, .mode-section {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .exercise-card {
+                box-shadow: none;
+                border: 2px solid #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+    <div class="rainbow"></div>
+    <div class="sun"></div>
+    <div class="grass"></div>
+    <div class="flowers" id="flowers"></div>
+
+    <!-- Helper Character -->
+    <div class="helper-character" onclick="showHelperTip()">🐰</div>
+    <div class="helper-bubble" id="helperBubble">Apasă pe numărul corect! 🎯</div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <span class="header-emoji">🌈</span>
+            <h1 class="title">Matematică Veselă</h1>
+            <p class="subtitle">Adunări și Scăderi 0-10 🎈</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-bubble">
+                <span class="stat-icon">⭐</span>
+                <div class="stat-info">
+                    <div class="stat-value" id="points">0</div>
+                    <div class="stat-label">Puncte</div>
+                </div>
+            </div>
+            <div class="stat-bubble">
+                <span class="stat-icon">✅</span>
+                <div class="stat-info">
+                    <div class="stat-value" id="correct">0</div>
+                    <div class="stat-label">Corecte</div>
+                </div>
+            </div>
+            <div class="stat-bubble">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-info">
+                    <div class="stat-value" id="total">0/20</div>
+                    <div class="stat-label">Total</div>
+                </div>
+            </div>
+            <div class="stat-bubble">
+                <span class="stat-icon">🔥</span>
+                <div class="stat-info">
+                    <div class="stat-value" id="streak">0</div>
+                    <div class="stat-label">Serie</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Selection -->
+        <div class="mode-section">
+            <button class="mode-btn active" onclick="setMode('all')" data-mode="all">
+                <span>🎲</span> Toate
+            </button>
+            <button class="mode-btn" onclick="setMode('addition')" data-mode="addition">
+                <span>➕</span> Adunări
+            </button>
+            <button class="mode-btn" onclick="setMode('subtraction')" data-mode="subtraction">
+                <span>➖</span> Scăderi
+            </button>
+        </div>
+
+        <!-- Caterpillar Progress -->
+        <div class="caterpillar-section">
+            <div class="caterpillar-title">Progresul tău 🐛</div>
+            <div class="caterpillar" id="caterpillar"></div>
+        </div>
+
+        <!-- Exercise Card -->
+        <div class="exercise-card" id="exerciseCard">
+            <!-- Generated content -->
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn next" onclick="nextExercise()" id="nextBtn" style="display: none;">
+                <span>➡️</span> Următorul
+            </button>
+            <button class="nav-btn new" onclick="newGame()">
+                <span>🔄</span> Joc Nou
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <span class="modal-trophy" id="modalTrophy">🏆</span>
+            <h2 class="modal-title" id="modalTitle">Felicitări!</h2>
+            <div class="modal-score" id="modalScore">20/20</div>
+            <div class="modal-stars" id="modalStars">⭐⭐⭐</div>
+            <p class="modal-message" id="modalMessage">Ești un campion!</p>
+            <button class="modal-btn" onclick="newGame()">🎮 Joacă Din Nou</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== GAME STATE ====================
+        const state = {
+            mode: 'all',
+            currentExercise: 0,
+            exercises: [],
+            points: 0,
+            correct: 0,
+            streak: 0,
+            maxStreak: 0,
+            totalExercises: 20,
+            answered: false,
+            selectedAnswer: null
+        };
+
+        // Visual items for counting
+        const visualItems = ['🍎', '🌟', '🎈', '🍪', '🦋', '🌸', '🐱', '🍓', '🎁', '🌺', '🐶', '🍭', '🌻', '🎀', '🍩'];
+
+        // ==================== AUDIO ====================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                const notes = [523, 659, 784];
+                notes.forEach((freq, i) => {
+                    const o = audioCtx.createOscillator();
+                    const g = audioCtx.createGain();
+                    o.connect(g);
+                    g.connect(audioCtx.destination);
+                    o.frequency.value = freq;
+                    g.gain.setValueAtTime(0.2, audioCtx.currentTime + i * 0.1);
+                    g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i * 0.1 + 0.2);
+                    o.start(audioCtx.currentTime + i * 0.1);
+                    o.stop(audioCtx.currentTime + i * 0.1 + 0.2);
+                });
+            } else if (type === 'wrong') {
+                osc.frequency.value = 200;
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'click') {
+                osc.frequency.value = 400;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            }
+        }
+
+        // ==================== INITIALIZE ====================
+        function init() {
+            createFlowers();
+            generateExercises();
+            renderCaterpillar();
+            renderExercise();
+            updateStats();
+        }
+
+        function createFlowers() {
+            const container = document.getElementById('flowers');
+            const flowers = ['🌸', '🌺', '🌻', '🌷', '🌼', '💐'];
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = (i * 7 + Math.random() * 3) + '%';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(flower);
+            }
+        }
+
+        // ==================== EXERCISE GENERATION ====================
+        function generateExercise(mode) {
+            const type = mode === 'all' 
+                ? (Math.random() > 0.5 ? 'addition' : 'subtraction')
+                : mode;
+
+            let num1, num2, answer;
+            const item = visualItems[Math.floor(Math.random() * visualItems.length)];
+
+            if (type === 'addition') {
+                // Generăm adunări fără trecere peste ordin (rezultat max 10)
+                num1 = Math.floor(Math.random() * 10); // 0-9
+                num2 = Math.floor(Math.random() * (10 - num1 + 1)); // astfel încât num1 + num2 <= 10
+                answer = num1 + num2;
+            } else {
+                // Generăm scăderi fără trecere peste ordin (descăzut >= scăzător)
+                num1 = Math.floor(Math.random() * 11); // 0-10
+                num2 = Math.floor(Math.random() * (num1 + 1)); // 0 până la num1
+                answer = num1 - num2;
+            }
+
+            return {
+                type,
+                num1,
+                num2,
+                answer,
+                item,
+                answered: false,
+                correct: null,
+                userAnswer: null
+            };
+        }
+
+        function generateExercises() {
+            state.exercises = [];
+            for (let i = 0; i < state.totalExercises; i++) {
+                state.exercises.push(generateExercise(state.mode));
+            }
+        }
+
+        // ==================== RENDERING ====================
+        function renderCaterpillar() {
+            const container = document.getElementById('caterpillar');
+            let html = '<div class="caterpillar-segment caterpillar-head">🐛</div>';
+            
+            for (let i = 0; i < state.totalExercises; i++) {
+                const ex = state.exercises[i];
+                let className = 'caterpillar-segment';
+                if (i === state.currentExercise) className += ' current';
+                if (ex.answered) className += ex.correct ? ' correct' : ' incorrect';
+                
+                html += `<div class="${className}" onclick="goToExercise(${i})">${i + 1}</div>`;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        function renderExercise() {
+            const ex = state.exercises[state.currentExercise];
+            const card = document.getElementById('exerciseCard');
+            
+            // Create visual items
+            let visualHtml = '';
+            
+            // First group
+            let items1 = '';
+            for (let i = 0; i < ex.num1; i++) {
+                items1 += `<span class="visual-item" style="animation-delay: ${i * 0.05}s">${ex.item}</span>`;
+            }
+            if (ex.num1 === 0) items1 = '<span style="color:#999;font-size:1.5rem">gol</span>';
+            
+            // Second group
+            let items2 = '';
+            for (let i = 0; i < ex.num2; i++) {
+                items2 += `<span class="visual-item" style="animation-delay: ${(ex.num1 + i) * 0.05}s">${ex.item}</span>`;
+            }
+            if (ex.num2 === 0) items2 = '<span style="color:#999;font-size:1.5rem">gol</span>';
+
+            const operatorSymbol = ex.type === 'addition' ? '+' : '−';
+            const operatorClass = ex.type === 'addition' ? 'plus' : 'minus';
+
+            visualHtml = `
+                <div class="visual-group">${items1}</div>
+                <span class="visual-operator ${operatorClass}">${operatorSymbol}</span>
+                <div class="visual-group">${items2}</div>
+                <span class="visual-equals">=</span>
+                <div class="visual-result">?</div>
+            `;
+
+            // Generate number buttons HTML
+            let numbersHtml = '';
+            for (let i = 0; i <= 10; i++) {
+                const selected = ex.userAnswer === i ? 'selected' : '';
+                const disabled = ex.answered ? 'disabled' : '';
+                numbersHtml += `<button class="number-btn ${selected}" onclick="selectAnswer(${i})" ${disabled}>${i}</button>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="exercise-badge">
+                        <span>📝</span> Exercițiul ${state.currentExercise + 1}
+                    </div>
+                    <div class="exercise-type ${ex.type}">
+                        <span>${ex.type === 'addition' ? '➕' : '➖'}</span>
+                        ${ex.type === 'addition' ? 'Adunare' : 'Scădere'}
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="visual-section">
+                        ${visualHtml}
+                    </div>
+
+                    <div class="expression-section">
+                        <div class="expression">
+                            <div class="expression-number">${ex.num1}</div>
+                            <span class="expression-operator ${operatorClass}">${operatorSymbol}</span>
+                            <div class="expression-number">${ex.num2}</div>
+                            <span class="expression-equals">=</span>
+                            <div class="expression-number" id="answerDisplay">${ex.answered ? ex.answer : '?'}</div>
+                        </div>
+                    </div>
+
+                    <div class="answer-section">
+                        <div class="answer-prompt">
+                            <span>👆</span> Apasă pe răspunsul corect:
+                        </div>
+                        
+                        <div class="number-grid">
+                            ${numbersHtml}
+                        </div>
+
+                        <div class="feedback-area ${ex.answered ? 'show' : ''}" id="feedbackArea">
+                            <div class="feedback-box ${ex.correct ? 'correct' : 'incorrect'}">
+                                <span class="feedback-emoji">${ex.correct ? '🎉' : '😢'}</span>
+                                <div class="feedback-text">
+                                    <div class="feedback-title">${ex.correct ? 'Bravo! Corect!' : 'Oops! Nu e corect...'}</div>
+                                    <div class="feedback-message">${ex.correct ? `+10 puncte! 🌟` : `Răspunsul corect era: ${ex.answer}`}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Show/hide next button
+            document.getElementById('nextBtn').style.display = ex.answered ? 'flex' : 'none';
+            
+            updateStats();
+            renderCaterpillar();
+        }
+
+        // ==================== GAME LOGIC ====================
+        function selectAnswer(num) {
+            const ex = state.exercises[state.currentExercise];
+            if (ex.answered) return;
+
+            playSound('click');
+            
+            ex.userAnswer = num;
+            ex.answered = true;
+
+            if (num === ex.answer) {
+                ex.correct = true;
+                state.correct++;
+                state.streak++;
+                if (state.streak > state.maxStreak) state.maxStreak = state.streak;
+                state.points += 10 + state.streak;
+                playSound('correct');
+                createConfetti();
+            } else {
+                ex.correct = false;
+                state.streak = 0;
+                playSound('wrong');
+            }
+
+            renderExercise();
+
+            // Check if game is complete
+            const allAnswered = state.exercises.every(e => e.answered);
+            if (allAnswered) {
+                setTimeout(showResultModal, 1500);
+            }
+        }
+
+        function nextExercise() {
+            if (state.currentExercise < state.totalExercises - 1) {
+                state.currentExercise++;
+                renderExercise();
+            }
+        }
+
+        function goToExercise(idx) {
+            state.currentExercise = idx;
+            renderExercise();
+        }
+
+        function setMode(mode) {
+            state.mode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            newGame();
+        }
+
+        function newGame() {
+            state.currentExercise = 0;
+            state.points = 0;
+            state.correct = 0;
+            state.streak = 0;
+            state.maxStreak = 0;
+            
+            document.getElementById('modalOverlay').classList.remove('show');
+            
+            generateExercises();
+            renderCaterpillar();
+            renderExercise();
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('points').textContent = state.points;
+            document.getElementById('correct').textContent = state.correct;
+            document.getElementById('total').textContent = `${state.exercises.filter(e => e.answered).length}/${state.totalExercises}`;
+            document.getElementById('streak').textContent = state.streak;
+        }
+
+        // ==================== MODALS & HELPERS ====================
+        function showResultModal() {
+            const percentage = Math.round((state.correct / state.totalExercises) * 100);
+            let trophy, title, message, stars;
+
+            if (percentage === 100) {
+                trophy = '🏆';
+                title = 'PERFECT!';
+                message = 'Ești un geniu al matematicii!';
+                stars = '⭐⭐⭐⭐⭐';
+            } else if (percentage >= 80) {
+                trophy = '🥇';
+                title = 'Excelent!';
+                message = 'Aproape perfect! Foarte bine!';
+                stars = '⭐⭐⭐⭐';
+            } else if (percentage >= 60) {
+                trophy = '🥈';
+                title = 'Foarte Bine!';
+                message = 'Ești pe drumul cel bun!';
+                stars = '⭐⭐⭐';
+            } else if (percentage >= 40) {
+                trophy = '🥉';
+                title = 'Bine!';
+                message = 'Mai exersează puțin!';
+                stars = '⭐⭐';
+            } else {
+                trophy = '🎖️';
+                title = 'Continuă!';
+                message = 'Nu renunța, vei reuși!';
+                stars = '⭐';
+            }
+
+            document.getElementById('modalTrophy').textContent = trophy;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalScore').textContent = `${state.correct}/${state.totalExercises}`;
+            document.getElementById('modalStars').textContent = stars;
+            document.getElementById('modalMessage').textContent = message;
+
+            document.getElementById('modalOverlay').classList.add('show');
+
+            if (percentage >= 60) {
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => createConfettiRandom(), i * 50);
+                }
+            }
+        }
+
+        function showHelperTip() {
+            const tips = [
+                'Numără obiectele din fiecare grup! 🔢',
+                'La adunare punem împreună! ➕',
+                'La scădere luăm ceva! ➖',
+                'Apasă pe numărul pe care-l crezi corect! 👆',
+                'Ești foarte bun! Continuă așa! 🌟',
+                'Gândește-te bine înainte de a răspunde! 🤔'
+            ];
+            
+            const bubble = document.getElementById('helperBubble');
+            bubble.textContent = tips[Math.floor(Math.random() * tips.length)];
+            bubble.classList.add('show');
+            
+            setTimeout(() => {
+                bubble.classList.remove('show');
+            }, 3000);
+        }
+
+        // ==================== CONFETTI ====================
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#c44cff', '#4cc9ff', '#4cff88', '#ffe44c', '#ff9f4c'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const conf = document.createElement('div');
+                    conf.className = 'confetti';
+                    conf.style.left = (40 + Math.random() * 20) + '%';
+                    conf.style.top = '50%';
+                    conf.style.width = Math.random() * 15 + 8 + 'px';
+                    conf.style.height = conf.style.width;
+                    conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+                    document.body.appendChild(conf);
+
+                    const angle = Math.random() * Math.PI * 2;
+                    const velocity = 8 + Math.random() * 8;
+                    let vx = Math.cos(angle) * velocity;
+                    let vy = Math.sin(angle) * velocity - 10;
+                    let x = 0, y = 0, rotation = 0;
+
+                    const animate = () => {
+                        vy += 0.3;
+                        x += vx;
+                        y += vy;
+                        rotation += vx * 2;
+                        conf.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                        
+                        if (y < window.innerHeight) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            conf.remove();
+                        }
+                    };
+                    requestAnimationFrame(animate);
+                }, i * 30);
+            }
+        }
+
+        function createConfettiRandom() {
+            const colors = ['#ff6b9d', '#c44cff', '#4cc9ff', '#4cff88', '#ffe44c', '#ff9f4c'];
+            const conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.top = '-20px';
+            conf.style.width = Math.random() * 12 + 6 + 'px';
+            conf.style.height = conf.style.width;
+            conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+            document.body.appendChild(conf);
+
+            let y = 0, rotation = 0;
+            const speed = 3 + Math.random() * 3;
+            const rotSpeed = Math.random() * 10 - 5;
+            const wobble = Math.random() * 2;
+
+            const animate = () => {
+                y += speed;
+                rotation += rotSpeed;
+                const wobbleX = Math.sin(y * 0.05) * wobble * 20;
+                conf.style.transform = `translateY(${y}px) translateX(${wobbleX}px) rotate(${rotation}deg)`;
+
+                if (y < window.innerHeight + 50) {
+                    requestAnimationFrame(animate);
+                } else {
+                    conf.remove();
+                }
+            };
+            requestAnimationFrame(animate);
+        }
+
+        // ==================== INIT ====================
+        window.onload = init;
+    </script>
+</body>
+</html>
